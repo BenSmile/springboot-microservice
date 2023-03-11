@@ -1,0 +1,16 @@
+server:
+  port: 8081
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/productdb?createDatabaseIfNotExist=true&useSSL=true
+    password: root
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: PRODUCT-SERVICE
+  config:
+    import: configserver:http://localhost:9296
