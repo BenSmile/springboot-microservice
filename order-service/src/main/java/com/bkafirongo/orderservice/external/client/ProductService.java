@@ -18,6 +18,6 @@ public interface ProductService {
             @RequestParam("quantity") Long quantity);
 
     default void fallback(Exception e){
-        throw  new CustomerException("Product service is down","UNAIVALABLE", 500);
+        throw  new CustomerException("Product service is down","UNAVAILABLE", 500);
     }
 }

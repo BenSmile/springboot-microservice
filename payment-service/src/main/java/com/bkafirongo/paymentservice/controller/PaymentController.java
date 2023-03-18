@@ -4,14 +4,12 @@ import com.bkafirongo.paymentservice.model.PaymentRequest;
 import com.bkafirongo.paymentservice.model.PaymentResponse;
 import com.bkafirongo.paymentservice.service.TransactionDetailsService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/payments")
 @RequiredArgsConstructor
-@Log4j2
 public class PaymentController {
 
     private final TransactionDetailsService transactionDetailsService;

@@ -6,6 +6,7 @@ import com.bkafirongo.productservice.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class ProductController {
         return new ResponseEntity(products, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAnyAuthority('Admin')")
     @PostMapping
     public ResponseEntity<Long> addProduct(@RequestBody ProductRequest body) {
         long productId = productService.addProduct(body);
@@ -31,6 +33,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('Admin') || hasAnyAuthority('Customer') || hasAnyAuthority('SCOPE_internal')")
     public ResponseEntity<ProductResponse> getProductById(@PathVariable("id") Long productId) {
         ProductResponse productResponse = productService.findById(productId);
         return ResponseEntity.ok(productResponse);
