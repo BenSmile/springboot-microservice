@@ -13,23 +13,28 @@ import com.bkafirongo.orderservice.model.PaymentMode;
 import com.bkafirongo.orderservice.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.Instant;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Log4j2
 public class OrderServiceImpl implements OrderService {
 
-    private final OrderRepository orderRepository;
+    @Autowired
+    OrderRepository orderRepository;
 
-    private final ProductService productService;
+    @Autowired
+    ProductService productService;
 
-    private final PaymentService paymentService;
+    @Autowired
+    PaymentService paymentService;
 
-    private final RestTemplate restTemplate;
+    @Autowired
+    RestTemplate restTemplate;
 
     @Override
     public long placeOrder(OrderRequest orderRequest) {

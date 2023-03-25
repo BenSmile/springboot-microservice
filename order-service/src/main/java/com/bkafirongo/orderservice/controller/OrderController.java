@@ -18,7 +18,7 @@ public class OrderController {
 
     private final OrderService orderService;
 
-//    @PreAuthorize("hasAnyAuthority('Customer')")
+    @PreAuthorize("hasAnyAuthority('Customer')")
     @PostMapping("/place-order")
     public ResponseEntity<Long> placeOrder(@RequestBody OrderRequest orderRequest) {
         long orderId = orderService.placeOrder(orderRequest);
