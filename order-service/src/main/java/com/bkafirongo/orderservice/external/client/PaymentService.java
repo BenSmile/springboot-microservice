@@ -14,7 +14,7 @@ public interface PaymentService {
     @PostMapping
     ResponseEntity<Long> doPayment(@RequestBody PaymentRequest paymentRequest);
 
-    default void fallback(Exception e){
-        throw  new CustomerException("Payment service is down","UNAIVALABLE", 500);
+    default ResponseEntity<Long> fallback(Exception e){
+        throw  new CustomerException("Payment service is down","UNAVAILABLE", 500);
     }
 }

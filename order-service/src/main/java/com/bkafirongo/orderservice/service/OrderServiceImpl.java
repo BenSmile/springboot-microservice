@@ -9,9 +9,7 @@ import com.bkafirongo.orderservice.external.response.PaymentResponse;
 import com.bkafirongo.orderservice.model.OrderRequest;
 import com.bkafirongo.orderservice.model.OrderResponse;
 import com.bkafirongo.orderservice.model.OrderResponse.ProductDetails;
-import com.bkafirongo.orderservice.model.PaymentMode;
 import com.bkafirongo.orderservice.repository.OrderRepository;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,7 +76,8 @@ public class OrderServiceImpl implements OrderService {
             log.info("Payment done successfully. Changing the Order status to PLACED");
             orderStatus = "PLACED";
         } catch (Exception e) {
-            log.error("Error occured in payment. Changing the Order status to PLACED");
+            e.printStackTrace();
+            log.error("Error occured in payment. Changing the Order status to FAILED");
             orderStatus = "FAILED";
         }
         order.setOrderStatus(orderStatus);

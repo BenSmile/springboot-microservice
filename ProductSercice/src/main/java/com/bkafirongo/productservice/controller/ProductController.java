@@ -25,7 +25,7 @@ public class ProductController {
         return new ResponseEntity(products, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('Admin')")
+    @PreAuthorize("hasAuthority('Admin')")
     @PostMapping
     public ResponseEntity<Long> addProduct(@RequestBody ProductRequest body) {
         long productId = productService.addProduct(body);
@@ -33,7 +33,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('Admin') || hasAnyAuthority('Customer') || hasAnyAuthority('SCOPE_internal')")
+    @PreAuthorize("hasAuthority('Admin') || hasAuthority('Customer') || hasAuthority('SCOPE_internal')")
     public ResponseEntity<ProductResponse> getProductById(@PathVariable("id") Long productId) {
         ProductResponse productResponse = productService.findById(productId);
         return ResponseEntity.ok(productResponse);
